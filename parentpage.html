@@ -1,0 +1,46 @@
+<html>
+<head>
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script>
+  $(document).ready(function() {
+            $("#button").click(function () {
+
+                var val = $('#name').val();
+                    if(val=='')
+                    {
+                        alert("Please Fill All Fields");
+                    }
+                else {
+                        $.ajax({
+                            type: "POST",
+                            url: "source.php",
+                            data: {
+                                data: val
+                            },
+                            success: function (msg) {
+                                // alert(msg);
+                                $('#result').html(msg);
+                            },
+                            error: function () {
+                                alert('error');
+                            }
+                        });
+                    }
+            });
+        });
+  </script>
+</head>
+<body>
+  <form>
+    <label for="bar">A bar</label>
+    <input id="name" name="val" type="text" value="" />
+
+    <input type="button" value="Send" id="button" />
+</form>
+<div id='result' name='result'></div> 
+<!-- Here Your Response from source page will be displayed after running AJAX -->
+</body>
+</html>
